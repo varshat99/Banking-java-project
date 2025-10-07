@@ -30,7 +30,7 @@ pipeline{
         }
         stage('run dockerfile'){
           steps{
-               sh 'docker buildx build -t myimg .'
+               sh 'docker build -t myimg .'
            }
          }
         stage('port expose'){

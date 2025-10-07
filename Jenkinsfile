@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    environment {
+        DOCKER_BUILDKIT = '1'
+        DOCKER_CLI_PLUGIN_PATH = '/usr/libexec/docker/cli-plugin'
+    }
     stages{
         stage('checkout the code from github'){
             steps{
@@ -30,7 +34,8 @@ pipeline{
         }
         stage('run dockerfile'){
           steps{
-               sh 'docker build -t myimg .'
+               sh 'docker buildx version'
+               sh 'docker buildx build -t my-img:latest .'
            }
          }
         stage('port expose'){

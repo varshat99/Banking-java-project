@@ -35,12 +35,12 @@ pipeline{
         stage('run dockerfile'){
           steps{
                sh 'docker buildx version'
-               sh 'docker buildx build -t myimg:latest .'
+               sh 'docker buildx build -t my-img:latest .'
            }
          }
         stage('port expose'){
             steps{
-                sh 'docker run -dt -p 8091:8091 --name c000 myimg:latest'
+                sh 'docker run -dt -p 8091:8091 --name c001 my-img:latest'
             }
         }   
     }
